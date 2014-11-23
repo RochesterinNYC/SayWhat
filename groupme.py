@@ -61,12 +61,19 @@ class GroupMeInterface:
       content = json.loads(r._content)
       messages = content['response']['messages']
     return messages
-'''
+
   @staticmethod  
   def get_user_info(access_token): 
-'''
+    params = {'token': access_token}  
+    r = requests.get(GroupMeInterface.api_url + 'users/me', params=params)
+    user_info = None
+    if r.status_code is 200:
+      content = json.loads(r._content)
+      user_info = content['response']
+    return user_info
 
 access_token = GroupMeInterface.access_token
 s = GroupMeInterface.get_groups(access_token)
 m = GroupMeInterface.get_all_messages(access_token, '10252279')
+user = GroupMeInterface.get_user_info(access_token)
 pdb.set_trace()
