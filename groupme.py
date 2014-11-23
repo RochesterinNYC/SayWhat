@@ -2,6 +2,7 @@ import requests
 import json
 import os
 import pdb
+import re
 
 class GroupMeInterface:
   api_url = "https://api.groupme.com/v3/"
@@ -72,8 +73,22 @@ class GroupMeInterface:
       user_info = content['response']
     return user_info
 
+  @staticmethod
+  def get_sentences(messages):
+    sentences = []
+    for message in messages:
+      #Ignore system generated messages like "User was added"
+      if not message['system'] and message['name'] != 'GroupMe': 
+        if message['text'] is not None:
+          text = message['text'].strip()
+          for sentence in re.split('[.?!]', text):
+            #Generate start and end tags
+            if sentence != '': sentences.append("_START_TAG_ _START_TAG_ {} _STOP_TAG_".format(sentence.strip().encode('ascii', 'ignore')))
+    return sentences
+
 access_token = GroupMeInterface.access_token
 s = GroupMeInterface.get_groups(access_token)
 m = GroupMeInterface.get_all_messages(access_token, '10252279')
 user = GroupMeInterface.get_user_info(access_token)
+sen = GroupMeInterface.get_sentences(m)
 pdb.set_trace()
