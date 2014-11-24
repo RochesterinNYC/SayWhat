@@ -1,5 +1,6 @@
 from __future__ import division
 import random
+import pdb
 
 class MarkovBot:
   def __init__(self):
@@ -37,7 +38,11 @@ class MarkovBot:
       current[0] = current[1]
       current[1] = next_word
     words.pop()
-    return (" ").join(words)
+    #Length screening to prevent weird generated stuff
+    if 2 < len(words) < 15:
+      return (" ").join(words) 
+    else:
+      return self.generate_sentence()
 
   def generate_word(self, current):
     possible = self.trigram_counts[current[0]][current[1]]
@@ -57,6 +62,7 @@ class MarkovBot:
     #Randomly generate word, more likely words have larger chances of being generated
     randFloat = random.uniform(0, 1)
     index = 0
+    #Refactor later with nonlinear, O(logn) search
     while(randFloat > probabilities[index]):
       index += 1
     return words[index]
