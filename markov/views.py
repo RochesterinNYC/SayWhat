@@ -1,10 +1,7 @@
-from django.http import HttpResponse
-from django.template import RequestContext, loader
+from django.shortcuts import render
 
 from markov.models import User
 
 def index(request):
-  template = loader.get_template('markov/index.html')
-  context = RequestContext(request, {
-  })
-  return HttpResponse(template.render(context))
+  context = {}
+  return render(request, 'markov/index.html', context)
