@@ -1,6 +1,10 @@
 SayWhat
 ------
 
+####To Use:
+
+Until the Django framework and GroupMe oauth are implemented, the only way to authenticate and train the markov bot on a corpus composed of the messages from your GroupMe groups is to get a groupme api token for your account and set it to the 'GROUPME_API_TOKEN' system variable.
+
 ####Functionality:
 
 Predicts text output for various social circuits like GroupMe, Twitter, Facebook, etc. given access to previous text material (corpus).
@@ -17,7 +21,7 @@ Observations/Issues to Fix:
 
 ####To Add:
 - Django Framework context
+- Oauth
 - Facebook Integration
 - Twitter Integration
 - Manual Text Integration
-- Oauth
