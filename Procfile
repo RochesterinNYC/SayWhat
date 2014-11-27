@@ -1,1 +1,1 @@
-web: gunicorn SayWhat.wsgi:application
+web: gunicorn SayWhat.wsgi --log-file -
