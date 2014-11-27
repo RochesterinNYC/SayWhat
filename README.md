@@ -3,12 +3,22 @@ SayWhat
 
 ####Current Status:
 
-Basic oauth flow and prediction user flow are implemented.
-User can basically oauth through GroupMe and have ~100 sentences predicted for them through webapp.
+- HEROKU DEPLOYMENT in progress. (R10 Timeout Error)
+- Basic oauth flow and prediction user flow are implemented.
+- User can basically oauth through GroupMe and have ~100 sentences predicted for them through webapp.
 
 ####To Use:
 
-Until the Django framework and GroupMe oauth are implemented, the only way to authenticate and train the markov bot on a corpus composed of the messages from your GroupMe groups is to get a groupme api token for your account and set it to the 'GROUPME_API_TOKEN' system variable.
+Until the Heroku deployment is complete, a GroupMe API client ID is required and should be stored as the 'GROUPME_API_TOKEN' system variable.
+
+####To Run:
+
+    pip install -r requirements.txt
+    python manage.py runserver
+
+or:
+
+    foreman start
 
 ####Functionality:
 
