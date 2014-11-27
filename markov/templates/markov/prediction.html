@@ -5,4 +5,11 @@
   <div class="text-center">
     User with access token {{access_token}} was created
   </div>
+
+  <div>
+  {% for sentence in predicted %}
+    <div style="margin-left: 30px;">
+      {{sentence}}
+    </div>
+  {% endfor %}
 {% endblock %}

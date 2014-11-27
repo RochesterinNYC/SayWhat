@@ -15,7 +15,6 @@ bot = MarkovBot()
 
 bot.train(sen)
 
-
 input = raw_input("Press enter to generate sentences. Type 'quit' and press enter to quit.\n")
 while input != 'quit': 
   print(bot.generate_sentence()) 

@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.conf import settings
 
-from markov.models import User
+from markov.models import User, MarkovBot, GroupMeInterface
 
 def index(request):
   context = {'token': settings.GROUPME_API_TOKEN}
@@ -19,7 +19,18 @@ def callback(request):
   except User.DoesNotExist:
     user = User(access_token=access_token)
     user.save()
-  context = {'access_token': user.access_token}
+  groups = GroupMeInterface.get_groups(access_token)
+  #Train on messages from all groups
+  m = []
+  for group in groups:
+    m.extend(GroupMeInterface.get_all_messages(access_token, group['id'])) 
+  sen = GroupMeInterface.get_sentences(m)
+  bot = MarkovBot()
+  bot.train(sen)
+  predicted = []
+  for x in range(0, 100):
+    predicted.append(bot.generate_sentence())
+  context = {'access_token': user.access_token, 'predicted': predicted}
   return render(request, 'markov/prediction.html', context)
 
 def prediction(request):
