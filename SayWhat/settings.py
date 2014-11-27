@@ -13,6 +13,12 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+ALLOWED_HOSTS = ['*']
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -89,5 +95,6 @@ STATICFILES_DIRS = (
         'static',
     ),
 )
+
 
 GROUPME_API_TOKEN = os.environ.get('GROUPME_API_TOKEN')
