@@ -89,3 +89,5 @@ STATICFILES_DIRS = (
         'static',
     ),
 )
+
+GROUPME_API_TOKEN = os.environ.get('GROUPME_API_TOKEN')
