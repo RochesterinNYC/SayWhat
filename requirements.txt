@@ -1,1 +1,4 @@
 wsgiref==0.1.2
+Django==1.7
+gunicorn==0.14.2
+requests==0.11.1

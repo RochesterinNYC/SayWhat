@@ -1,6 +1,11 @@
 SayWhat
 ------
 
+####Current Status:
+
+Basic oauth flow and prediction user flow are implemented.
+User can basically oauth through GroupMe and have ~100 sentences predicted for them through webapp.
+
 ####To Use:
 
 Until the Django framework and GroupMe oauth are implemented, the only way to authenticate and train the markov bot on a corpus composed of the messages from your GroupMe groups is to get a groupme api token for your account and set it to the 'GROUPME_API_TOKEN' system variable.
@@ -20,8 +25,10 @@ Observations/Issues to Fix:
 - Images, smileys, links all are usually one word and don't really represent regular words.
 
 ####To Add:
-- Django Framework context
-- Oauth
+- Caching
+- Refactoring of model associations/usage
+- Sessioningo
+- Front-end Styling
 - Facebook Integration
 - Twitter Integration
 - Manual Text Integration
